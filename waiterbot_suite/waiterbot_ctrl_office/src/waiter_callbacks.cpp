@@ -95,19 +95,19 @@ void WaiterNode::deliverOrderCB()
   if (delivery_order_.status != simple_delivery_msgs::DeliveryStatus::IDLE)
   {
     ROS_WARN("Waiterbot not in idle status; cannot attend request (current status is %s)", toCStr(delivery_order_.status));
-//    return;
+    //return;
     // TODO how the hell I inform of this to the task coordinator???
   }
 
   // Sccept the new goal
-  std::string order_id = as_.acceptNewGoal()->order_id;
-  std::vector<std::string> locations = as_.acceptNewGoal()->locations;
-  
+  simple_delivery_msgs::RobotDeliveryOrderGoal::ConstPtr goal = as_.acceptNewGoal();
+  std::string order_id = goal->order_id;
+  ROS_INFO("Deliver order action requested [order: %s]", order_id.c_str());  
+  std::vector<std::string> locations = goal->locations;
   for (int i = 0 ; i < locations.size();i++){
     ROS_INFO("Deliver order action requested [order: %s, table: %s]", order_id.c_str(), locations[i].c_str());  
   }
-  
-
+ 
   // //< DEBUG  Fake orders for evaluating individual tasks
   // // if ((debug_mode_ == true) && (delivery_order.locations.size() < 0))
   // // {
@@ -120,7 +120,7 @@ void WaiterNode::deliverOrderCB()
   // // }
   // //> DEBUG
 
-   // starts a thread to process order
+  // starts a thread to process order
   order_process_thread_ = boost::thread(&WaiterNode::processOrder, this, locations);
 }
 
