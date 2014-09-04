@@ -206,6 +206,7 @@ bool WaiterNode::gotoTable(int table_id)
   geometry_msgs::PoseStamped table_pose;
   for (unsigned int i = 0; i < table_poses_.tables.size(); i++)
   {
+
     // Look for the requested table's pose (and get rid of the useless covariance)
     if (table_poses_.tables[i].name.find(mtk::nb2str(table_id), strlen("table")) != std::string::npos)
     {
@@ -216,6 +217,9 @@ bool WaiterNode::gotoTable(int table_id)
       radius = table_poses_.tables[i].radius;
       table_found = true;
       break;
+    }
+    else{
+      ROS_INFO("Discard Target table %s: [table%d]", table_poses_.tables[i].name.c_str(),table_id);
     }
   }
 
