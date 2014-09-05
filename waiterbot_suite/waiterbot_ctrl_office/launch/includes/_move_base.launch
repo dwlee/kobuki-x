@@ -19,6 +19,7 @@
 
     <rosparam file="$(find waiterbot_ctrl_office)/param/move_base/base_local_planner_params.yaml" command="load" />
     <rosparam file="$(find waiterbot_ctrl_office)/param/move_base/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find waiterbot_ctrl_office)/param/move_base/navfn_global_planner_params.yaml" command="load" />
     <rosparam file="$(find waiterbot_ctrl_office)/param/move_base/move_base_params.yaml" command="load" />
 
     <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>

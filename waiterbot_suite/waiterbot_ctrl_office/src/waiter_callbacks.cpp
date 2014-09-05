@@ -107,18 +107,6 @@ void WaiterNode::deliverOrderCB()
   for (int i = 0 ; i < locations.size();i++){
     ROS_INFO("Deliver order action requested [order: %s, table: %s]", order_id.c_str(), locations[i].c_str());  
   }
- 
-  // //< DEBUG  Fake orders for evaluating individual tasks
-  // // if ((debug_mode_ == true) && (delivery_order.locations.size() < 0))
-  // // {
-  // //   fakeOrderForEasyDebugging(order_.order_id * -1, order_.table_id);
-  // //   // Return the result to Task Coordinator
-  // //   simple_delivery_msgs::DeliveryDeliverOrderResult result;
-  // //   result.result = "VAMONOS!!!!";
-  // //   as_.setSucceeded(result);
-  // //   return;
-  // // }
-  // //> DEBUG
 
   // starts a thread to process order
   order_process_thread_ = boost::thread(&WaiterNode::processOrder, this, locations);

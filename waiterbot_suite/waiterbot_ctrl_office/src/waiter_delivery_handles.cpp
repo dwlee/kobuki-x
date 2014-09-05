@@ -45,7 +45,8 @@ bool WaiterNode::processOrder(std::vector<std::string> locations)
   sendFeedback(simple_delivery_msgs::DeliveryStatus::GO_TO_RECEIVER);
 
   // 3. goto table     Navigator::deliverOrder
-  if (gotoTable(atoi(locations[0].c_str()) == false))
+  int target_id = atoi(locations[0].c_str());
+  if (gotoTable(target_id) == false)
   {
     return setFailure("Waiter failed to go to table");
   }
