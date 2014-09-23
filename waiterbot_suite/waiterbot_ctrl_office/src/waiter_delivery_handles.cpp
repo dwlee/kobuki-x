@@ -143,6 +143,6 @@ void WaiterNode::sendFeedback(int feedback_status)
 void WaiterNode::playSound(const std::string& wav_file) {
   int result;
   if ((wav_file.length() > 0))
-    result = system(("rosrun waiterbot_ctrl_cafe play_sound.bash " + resources_path_ + wav_file).c_str());
+    result = system(("rosrun waiterbot_ctrl_office play_sound.bash " + resources_path_ + wav_file).c_str());
 }
 } // namespace waiterbot

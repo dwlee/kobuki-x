@@ -486,7 +486,7 @@ bool Navigator::pickUpOrder(const geometry_msgs::PoseStamped& pickup_pose)
             // Do not moo at more than 0.1 Hz... we don't want to be bothersome...
             ROS_INFO("Pickup point looks crowded... wait for %.2f seconds before retrying", wait_for_pickup_point_);
             int result;
-            if (play_sounds_) result = system(("rosrun waiterbot_ctrl_cafe play_sound.bash " + resources_path_ + SoundParam::STAND_ASIDE).c_str());
+            if (play_sounds_) result = system(("rosrun waiterbot_ctrl_office play_sound.bash " + resources_path_ + SoundParam::STAND_ASIDE).c_str());
 
             // Clear also the costmaps (at this point we have disabled recovery behaviors!)
             clearCostmaps();
